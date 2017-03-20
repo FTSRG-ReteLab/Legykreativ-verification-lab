@@ -12,6 +12,14 @@ public class TrainControllerImpl implements TrainController {
 	private int speedLimit = 0;
 	private int updateTime = 100;
 
+	
+	public TrainControllerImpl(){
+		
+		Timer speedUpdater = new Timer();
+		speedUpdater.scheduleAtFixedRate(new UpdateTask(), 0, updateTime);
+		
+	}
+	
 	@Override
 	public void followSpeed() {
 		if (referenceSpeed < 0) {
@@ -51,17 +59,12 @@ public class TrainControllerImpl implements TrainController {
 	}
 	
 	class UpdateTask extends TimerTask {
+		@Override
         public void run() {
             followSpeed();
         }
 	}
 	
-	public TrainControllerImpl(){
-		
-		Timer speedUpdater = new Timer();
-		speedUpdater.scheduleAtFixedRate(new UpdateTask(), 0, updateTime);
-		
-	}
 	public void setUpdateTime(int newTime){
 		this.updateTime = newTime;
 	}
