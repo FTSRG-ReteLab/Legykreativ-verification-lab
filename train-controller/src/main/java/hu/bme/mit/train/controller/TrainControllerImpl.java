@@ -11,6 +11,7 @@ public class TrainControllerImpl implements TrainController {
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
 	private Timer timer;
+	private int refreshTime = 100;
 	
 	public TrainControllerImpl()
 	{
@@ -21,7 +22,7 @@ public class TrainControllerImpl implements TrainController {
             public void run() {
                 followSpeed();
             }
-        }, 0, 1000);
+        }, 0, refreshTime);
 	}
 
 	@Override
