@@ -10,6 +10,7 @@ public class TrainControllerImpl implements TrainController {
 	private int step = 0;
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
+	private int updateTime = 100;
 
 	@Override
 	public void followSpeed() {
@@ -58,8 +59,11 @@ public class TrainControllerImpl implements TrainController {
 	public TrainControllerImpl(){
 		
 		Timer speedUpdater = new Timer();
-		speedUpdater.scheduleAtFixedRate(new UpdateTask(), 0, 100);
+		speedUpdater.scheduleAtFixedRate(new UpdateTask(), 0, updateTime);
 		
+	}
+	public void setUpdateTime(int newTime){
+		this.updateTime = newTime;
 	}
 
 }
